@@ -1,0 +1,179 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "org.project.HelloApplication",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_309310695 { 
+   	label=project
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   DataInitializer1754470897[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DataInitializer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- getRandom(min: int, max: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ init()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+HelloApplication1754470897[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HelloApplication</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- additionalProperties(): Properties</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dataSource(): DataSource</TD></TR>
+<TR><TD ALIGN="LEFT" ># employeeDAO(): EmployeeDAO</TD></TR>
+<TR><TD ALIGN="LEFT" ># encryptionUtil(): EncryptionUtil</TD></TR>
+<TR><TD ALIGN="LEFT" >+ entityManagerFactory(): LocalContainerEntityManagerFactoryBean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ passwordEncoder(): PasswordEncoder</TD></TR>
+<TR><TD ALIGN="LEFT" >+ transactionManager(emf: EntityManagerFactory): PlatformTransactionManager</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+subgraph cluster_1970017481 { 
+   	label=bd
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   EmployeeDAO164047013[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EmployeeDAO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   emf: EntityManagerFactory [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   encryptionUtil: EncryptionUtil [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ close()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEmployee(employeeId: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployeeById(employeeId: int): Employee</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployeesWithFilters(page: int, perPage: int, name: String, position: String, department: String, hireDateStr: String, email: String, phone: String): List&lt;Employee&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveEmployee(employee: Employee)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEmployee(employee: Employee)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginCredentialsDAO164047013[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginCredentialsDAO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   emf: EntityManagerFactory [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ close()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findAll(): List&lt;LoginCredentials&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findById(id: int): LoginCredentials</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findByUsername(username: String): LoginCredentials</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCredentialsByEmployee(employee: Employee): LoginCredentials</TD></TR>
+<TR><TD ALIGN="LEFT" >+ save(loginCredentials: LoginCredentials)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(loginCredentials: LoginCredentials)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+DataInitializer1754470897 -> EmployeeDAO164047013[label="init() -> saveEmployee()"];
+DataInitializer1754470897 -> LoginCredentialsDAO164047013[label="init() -> save()"];
+HelloApplication1754470897 -> DataInitializer1754470897[label="main() -> init()"];
+    
+}
+@enduml

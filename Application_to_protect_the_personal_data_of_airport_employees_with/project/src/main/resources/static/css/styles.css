@@ -1,0 +1,30 @@
+body {
+    padding-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.page {
+    margin-bottom: 20px;
+}
+
+.actions {
+    white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-inline .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .actions button {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+}
